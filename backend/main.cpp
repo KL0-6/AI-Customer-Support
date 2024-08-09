@@ -14,7 +14,9 @@ int main(int argc, char* argv[])
 
     ChatCtrl::setApiKey(argv[1]);
 
-    drogon::app().addListener("0.0.0.0", 7770).setThreadNum(0).run();
+    LOG_INFO << "Server running on 127.0.0.1:8848";
+
+    drogon::app().addListener("0.0.0.0", 8848).setThreadNum(0).run();
 
     return 0;
 }

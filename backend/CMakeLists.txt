@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.8 FATAL_ERROR)
 project(ChatBackend LANGUAGES C CXX)
 
+set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG -frtti")
+set(CMAKE_CXX_FLAGS_DEBUG "-g")
+
 include(FetchContent)
 
 FetchContent_Declare(cpr GIT_REPOSITORY https://github.com/libcpr/cpr.git GIT_TAG origin/master)

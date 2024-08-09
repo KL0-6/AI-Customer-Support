@@ -76,6 +76,5 @@ void ChatCtrl::asyncHandleHttpRequest(const HttpRequestPtr& request, std::functi
         return callback(generateError("Request to API failed!"));
     }
     
-
     return callback(generateError("Unknown error contacting API!"));
 }

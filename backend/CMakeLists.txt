@@ -14,11 +14,14 @@ find_package(Drogon REQUIRED)
 add_executable(ChatBackend
     main.cpp
     routes/test/test.cpp
+    routes/chat/chat.cpp
 )
 
 set_target_properties(ChatBackend PROPERTIES CXX_STANDARD 17)
+
 target_link_libraries(ChatBackend PRIVATE 
     Drogon::Drogon 
     cpr::cpr
 )
+
 target_include_directories(ChatBackend PRIVATE ${nlohmann_json_SOURCE_DIR}/single_include)

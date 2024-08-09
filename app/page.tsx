@@ -33,6 +33,59 @@ export default function Page()
             sender: "server",
             contents: "Sure! Please visit this link: https://localhost.com/clothing"
         });
+        first_messages.push({
+            sender: "server",
+            contents: "Sure! Please visit this link: https://localhost.com/clothing"
+        });
+        first_messages.push({
+            sender: "server",
+            contents: "Sure! Please visit this link: https://localhost.com/clothing"
+        });
+        first_messages.push({
+            sender: "server",
+            contents: "Sure! Please visit this link: https://localhost.com/clothing"
+        });
+        first_messages.push({
+            sender: "server",
+            contents: "Sure! Please visit this link: https://localhost.com/clothing"
+        });
+        first_messages.push({
+            sender: "server",
+            contents: "Sure! Please visit this link: https://localhost.com/clothing"
+        });
+        first_messages.push({
+            sender: "server",
+            contents: "Sure! Please visit this link: https://localhost.com/clothing"
+        });
+        first_messages.push({
+            sender: "server",
+            contents: "Sure! Please visit this link: https://localhost.com/clothing"
+        });
+        first_messages.push({
+            sender: "server",
+            contents: "Sure! Please visit this link: https://localhost.com/clothing"
+        });
+        first_messages.push({
+            sender: "server",
+            contents: "Sure! Please visit this link: https://localhost.com/clothing"
+        });
+        first_messages.push({
+            sender: "server",
+            contents: "Sure! Please visit this link: https://localhost.com/clothing"
+        });
+        first_messages.push({
+            sender: "server",
+            contents: "Sure! Please visit this link: https://localhost.com/clothing"
+        });
+        first_messages.push({
+            sender: "server",
+            contents: "Sure! Please visit this link: https://localhost.com/clothing"
+        });
+        first_messages.push({
+            sender: "server",
+            contents: "Sure! Please visit this link: https://localhost.com/clothing"
+        });
+
 
         SetMessages(first_messages);
     }, []);
@@ -56,7 +109,7 @@ export default function Page()
     }
 
     // Return a message as HTML elements with links formatted
-    const FormatMesage = (message: string) => {
+    const FormatMessage = (message: string) => {
         // Enjoy the regex, partially built by hand, in prod prob best to remove the | localhost
         const regex = /((?:http(?:s)?:\/\/.)(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b(?:[-a-zA-Z0-9@:%_\+.~#?&//=]*)|(?:http(?:s)?:\/\/(?:localhost):[0-9]{1,5}\b(?:[-a-zA-Z0-9@:%_\+.~#?&//=]*)))/g
         let link_ready_messages: string[] = message.split(regex);
@@ -71,28 +124,36 @@ export default function Page()
     }
     
     return (
-    <div className="flex justify-between flex-col max-w-lg max-h-full/50 w-full h-full bg-gray-100">
+    <div className="flex justify-between flex-col max-w-lg w-full h-full bg-gray-100">
         <div className="w-full h-24 bg-gradient-to-r from-sky-400 to-sky-500">
             <div className="grid place-items-center h-full">
-                <p className="w-full text-white p-2" style={{ fontSize: 'max(min(5vh, 3.5vw), 20px)'}}>Customer Support Agent</p>
+                <p className="w-full text-white p-2" style={{ fontSize: 'min(min(5vh, 5vw), 30px)'}}>Customer Support Agent</p>
             </div>
         </div>
-        <div className="flex flex-col justify-end h-full">
-            {messages.map(function(info, index) {
-                if (info.sender == "server") {
-                    return <div className="grid place-items-start" key={index}>
-                        <div className="foreign-message text-white rounded-lg max-w-96 p-2 ml-2 m-1">
-                            {FormatMesage(info.contents)}
-                        </div>
-                    </div>
-                }
-
-                return <div className="grid place-items-end" key={index}>
-                    <div className="sender-message text-black rounded-lg max-w-96 p-2 ml-2 m-1">
-                        {FormatMesage(info.contents)}
-                    </div>
-                </div>
-        })}
+        <div className="flex flex-col justify-end h-fit overflow-hidden">
+            <div className="overflow-y-auto scroll-auto" style={{height: '40em'}}>
+            {
+                messages.map(function(info, index) {
+                    if (info.sender == "server") {
+                        return (
+                        <div className="grid place-items-start" key={index}>
+                            <div className="foreign-message text-white rounded-lg max-w-96 p-2 ml-2 m-1">
+                                {FormatMessage(info.contents)}
+                            </div>
+                        </div>)
+                    }
+                    else
+                    {
+                        return (
+                        <div className="grid place-items-end" key={index}>
+                            <div className="sender-message text-black rounded-lg max-w-96 p-2 ml-2 m-1">
+                                {FormatMessage(info.contents)}
+                            </div>
+                        </div>)
+                    }
+                })
+            }
+            </div>
         </div>
         <div className="flex flex-row justify-between bg-gray-100" style={{ height: '14%' }}>
             <textarea className="w-full rounded-lg p-2 m-2" style={{ fontSize: 'max(min(3vh, 3vw), 20px)'}} ref={input_ref} placeholder="Prompt..."/>

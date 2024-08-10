@@ -98,15 +98,14 @@ const Page = () =>
 
     return (
         <div className="flex flex-col max-w-lg w-full h-full bg-gray-100">
-
             <div className="w-full h-24 bg-gradient-to-r from-sky-400 to-sky-500">
                 <div className="grid place-items-center h-full">
                     <p className="w-full text-white p-2" style={{ fontSize: "min(min(5vh, 5vw), 30px)" }}>Customer Support Agent</p>
                 </div>
             </div>
 
-            <div className="flex flex-col justify-end h-fit overflow-hidden">
-                <div ref={chat_ref} className="overflow-y-auto" style={{ height: "40em" }} aria-live="polite">
+            <div className="flex flex-col flex-grow overflow-hidden">
+                <div ref={chat_ref} className="overflow-y-auto" style={{ height: "calc(100% - 14%)" }} aria-live="polite">
                     {messages.map((info, index) => (
                         <div className={`flex ${info.sender === "server" ? "justify-start" : "justify-end"} mb-2`} key={index}>
                             <div className={`${info.sender === "server" ? "bg-blue-500 text-white" : "bg-gray-300 text-black"} rounded-lg max-w-96 p-2 m-1`}>
@@ -117,13 +116,12 @@ const Page = () =>
                 </div>
             </div>
 
-            <div className="flex flex-row justify-between bg-gray-100" style={{ height: "14%" }}>
-                <textarea className="w-full rounded-lg p-2 m-2" style={{ fontSize: "max(min(3vh, 3vw), 20px)" }} ref={input_ref} placeholder="Prompt..." />
-                <button className="border-2 p-2 m-2 ml-0 rounded-lg w-1/5 text-base md:text-lg truncate" style={{ minWidth: "120px", maxWidth: "200px" }} onClick={SendMessage}>
+            <div className="flex flex-row bg-gray-100 items-center" style={{ height: "14%" }}>
+                <textarea className="flex-grow rounded-lg p-2 m-2" style={{ fontSize: "max(min(3vh, 3vw), 20px)" }} ref={input_ref} placeholder="Prompt..." />
+                <button className="border-2 p-2 m-2 rounded-lg" style={{ minWidth: "120px", fontSize: "18px" }} onClick={SendMessage}>
                     Send
                 </button>
             </div>
-            
         </div>
     );
 };

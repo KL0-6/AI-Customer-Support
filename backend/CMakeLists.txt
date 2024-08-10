@@ -6,6 +6,8 @@ set(CMAKE_CXX_FLAGS_DEBUG "-g")
 
 include(FetchContent)
 
+set(BUILD_SHARED_LIBS OFF CACHE BOOL "Build libraries as shared libraries" FORCE)
+
 FetchContent_Declare(cpr GIT_REPOSITORY https://github.com/libcpr/cpr.git GIT_TAG origin/master)
 FetchContent_MakeAvailable(cpr)
 

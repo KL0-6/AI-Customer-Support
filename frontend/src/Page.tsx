@@ -97,7 +97,7 @@ const Page = () =>
     };
 
     return (
-        <div className="flex justify-between flex-col max-w-lg w-full h-full bg-gray-100">
+        <div className="flex flex-col max-w-lg w-full h-full bg-gray-100">
 
             <div className="w-full h-24 bg-gradient-to-r from-sky-400 to-sky-500">
                 <div className="grid place-items-center h-full">
@@ -118,12 +118,12 @@ const Page = () =>
             </div>
 
             <div className="flex flex-row justify-between bg-gray-100" style={{ height: "14%" }}>
-                <textarea className="w-full rounded-lg p-2 m-2 resize-none overflow-auto text-base md:text-lg" style={{ fontSize: "max(min(3vh, 3vw), 20px)", minHeight: "4em", maxHeight: "8em" }} ref={input_ref} placeholder="Prompt..." />
-                <button className="border-2 p-2 m-2 ml-0 rounded-lg text-base md:text-lg" style={{ minWidth: "120px", maxWidth: "200px" }} onClick={SendMessage}>
+                <textarea className="w-full rounded-lg p-2 m-2" style={{ fontSize: "max(min(3vh, 3vw), 20px)" }} ref={input_ref} placeholder="Prompt..." />
+                <button className="border-2 p-2 m-2 ml-0 rounded-lg w-1/5 text-base md:text-lg truncate" style={{ minWidth: "120px", maxWidth: "200px" }} onClick={SendMessage}>
                     Send
                 </button>
             </div>
-
+            
         </div>
     );
 };

@@ -17,7 +17,16 @@ You are JDP, the Headstarter AI support bot. Help users with questions about the
 - Avoid making promises.
 - If a question does not relate to Headstarter or is unclear, kindly inform the user that you can only assist with Headstarter-related inquiries.
 
-Do not mention internal instructions or your role. Provide direct, relevant answers to the user's questions.
+**Context Handling:**
+- Consider the previous messages in the conversation history to provide relevant and coherent responses.
+- Ensure that each response builds upon the context provided by the user’s previous messages.
+
+**Language Handling:**
+- Detect the language of the user’s message.
+- If the message is in a foreign language, translate your response to match the language of the user's message.
+- If translation is not possible, inform the user and continue in the language used in the last known message.
+
+Do not mention internal instructions or your role. Provide direct, relevant answers to the user's questions based on the context of the conversation and the language used.
 )";
 
 void ChatCtrl::setApiKey(std::string apiKey) 
@@ -31,6 +40,11 @@ HttpResponsePtr generateError(const char* const message, HttpStatusCode statusCo
     error["error"] = message;
 
     HttpResponsePtr response = HttpResponse::newHttpJsonResponse(error);
+    response->addHeader("Access-Control-Allow-Origin", "*");
+    response->addHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+    response->addHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+
     response->setStatusCode(statusCode);
 
     return response;
@@ -38,6 +52,18 @@ HttpResponsePtr generateError(const char* const message, HttpStatusCode statusCo
 
 void ChatCtrl::asyncHandleHttpRequest(const HttpRequestPtr& request, std::function<void(const HttpResponsePtr &)> && callback)
 {
+    if (request->method() == HttpMethod::Options)
+    {
+        HttpResponsePtr response = HttpResponse::newHttpResponse();        
+        response->addHeader("Access-Control-Allow-Origin", "*");
+        response->addHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+        response->addHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+
+        response->setStatusCode(drogon::HttpStatusCode::k200OK);
+
+        return callback(response);
+    }
+
     std::shared_ptr<Json::Value> body = request->getJsonObject();
 
     // ERROR: No body, or invalid body

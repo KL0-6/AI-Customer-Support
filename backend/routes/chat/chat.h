@@ -10,6 +10,6 @@ class ChatCtrl : public drogon::HttpSimpleController<ChatCtrl>
         static void setApiKey(std::string);
         void asyncHandleHttpRequest(const HttpRequestPtr&, std::function<void(const HttpResponsePtr &)> &&) override;
         PATH_LIST_BEGIN
-        PATH_ADD("/chat", Post);
+        PATH_ADD("/chat", Post, Options);
         PATH_LIST_END
 };
